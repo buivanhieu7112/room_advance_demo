@@ -1,3 +1,13 @@
 package com.example.roomdatabasewithrxjava.data.source.model
 
-data class UserAndAllPet(val user: User, val pets: MutableList<Pet>)
+import androidx.room.Embedded
+import androidx.room.Relation
+
+class UserAndAllPet {
+    @Embedded
+    var user: User? = null
+    @Relation(
+        parentColumn = "id", entityColumn = "user_id"
+    )
+    var pets: MutableList<Pet> = mutableListOf()
+}

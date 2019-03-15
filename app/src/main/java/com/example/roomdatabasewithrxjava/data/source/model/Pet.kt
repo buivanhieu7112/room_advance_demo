@@ -4,6 +4,7 @@ import androidx.room.*
 
 @Entity(
     tableName = "Pet",
+    indices = [Index("user_id",unique = false)],
     foreignKeys = [ForeignKey(entity = User::class, parentColumns = arrayOf("id"), childColumns = arrayOf("user_id"), onDelete = ForeignKey.CASCADE)]
 )
 data class Pet(

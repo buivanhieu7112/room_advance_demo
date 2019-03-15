@@ -33,13 +33,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun insertPet() {
-        val pet = Pet(1, "cat", 1)
-        userRepository.insertPet(pet)
-        Log.d("DATA_PET", userRepository.getPetsForUser(1).toString())
+        for (i in 1..4) {
+            val pet = Pet(i, "dog", 1)
+            userRepository.insertPet(pet)
+        }
+    }
+
+    fun getUserAndPet(){
+        Log.d("DATA PET User",userRepository.getUserAndPet().pets.size.toString())
     }
 
     fun getUserById(id: Int): User? {
         return userRepository.getUserById(id)
+
     }
 
     fun updateUser(vararg user: User) {
@@ -59,6 +65,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.buttonGetUser -> {
                 if (getUserById(1) != null) {
                     textViewUserName.text = getUserById(1)?.name
+                    Log.d("DATA_PET", userRepository.getPetsForUser(1)?.size.toString())
+                    getUserAndPet()
                 }
             }
             R.id.buttonDeleteUser -> deleteUser(1)

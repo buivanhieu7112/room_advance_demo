@@ -2,12 +2,13 @@ package com.example.roomdatabasewithrxjava.data.source.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.roomdatabasewithrxjava.data.source.local.persistence.DateTypeConvert
 import java.util.*
 
-@Entity(tableName = "User")
+@Entity(
+    tableName = "User", indices = [Index("id", unique = true)]
+    )
 data class User(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id") var id: Int,
